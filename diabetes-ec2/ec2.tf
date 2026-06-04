@@ -9,7 +9,6 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.ed25519.public_key_openssh
 }
  
-# Save the private key to your MacBook so you can use it
 resource "local_file" "private_key" {
   content         = tls_private_key.ed25519.private_key_openssh
   filename        = "${path.module}/diabetes-key.pem"
