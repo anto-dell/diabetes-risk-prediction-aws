@@ -22,6 +22,13 @@ Hosts a Flask API on an EC2 t3.micro instance (Ubuntu 22.04, eu-central-1). The 
 
 ## How to deploy
 
+**Option 1 — Automated (recommended):**
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+**Option 2 — Manual:**
 ```bash
 terraform init
 terraform apply
@@ -32,7 +39,7 @@ Terraform will output the API URL:
 api_url = "http://<EC2_PUBLIC_IP>:5000/predict"
 ```
 
-Wait 1 to 2 minutes after apply for the instance to finish its startup script before testing.
+Wait 60-90 seconds after apply for the instance to finish its startup script before testing.
 
 ---
 
@@ -62,11 +69,18 @@ Expected response:
 
 ## How to destroy
 
+**Option 1 — Automated:**
+```bash
+chmod +x destroy.sh
+./destroy.sh
+```
+
+**Option 2 — Manual:**
 ```bash
 terraform destroy
 ```
 
-> **Important:** Run `terraform destroy` immediately after testing to avoid unexpected AWS charges. EC2 costs ~$0.01/hour when running.
+> **Important:** Run destroy immediately after testing to avoid unexpected AWS charges. EC2 costs ~$0.01/hour when running.
 
 ---
 
@@ -79,6 +93,8 @@ Deployed in **eu-central-1 (Frankfurt)**.
 ## Project structure
 
 ```
+├── deploy.sh        # Automated deployment script
+├── destroy.sh       # Automated teardown script
 ├── main.tf          # AWS provider configuration
 ├── ec2.tf           # EC2 instance, security group, key pair
 ├── s3.tf            # S3 bucket, model and app.py upload

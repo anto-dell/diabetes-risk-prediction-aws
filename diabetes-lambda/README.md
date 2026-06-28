@@ -23,6 +23,13 @@ Deploys the model as an AWS Lambda function (Python 3.11, 512 MB, 30s timeout) t
 
 ## How to deploy
 
+**Option 1 — Automated (recommended):**
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+**Option 2 — Manual:**
 ```bash
 terraform init
 terraform apply
@@ -61,11 +68,18 @@ Expected response:
 
 ## How to destroy
 
+**Option 1 — Automated:**
+```bash
+chmod +x destroy.sh
+./destroy.sh
+```
+
+**Option 2 — Manual:**
 ```bash
 terraform destroy
 ```
 
-> **Important:** Run `terraform destroy` after testing to clean up all AWS resources.
+> **Important:** Run destroy after testing to clean up all AWS resources.
 
 ---
 
@@ -78,6 +92,8 @@ Deployed in **eu-central-1 (Frankfurt)**.
 ## Project structure
 
 ```
+├── deploy.sh          # Automated deployment script
+├── destroy.sh         # Automated teardown script
 ├── main.tf            # AWS provider configuration
 ├── lambda.tf          # Lambda Layer build, Lambda function, API Gateway permission
 ├── apigateway.tf      # API Gateway HTTP API, route, stage, integration
